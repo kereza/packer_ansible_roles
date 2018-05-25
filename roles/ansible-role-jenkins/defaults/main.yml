@@ -1,0 +1,82 @@
+---
+# Optional method of pinning a specific version of Jenkins and/or overriding the
+# default Jenkins packaging URL.
+# jenkins_version: "1.644"
+# jenkins_pkg_url: "https://www.example.com"
+
+# Change this to `latest` to update Jenkins if a newer version is available.
+jenkins_package_state: present
+
+jenkins_connection_delay: 5
+jenkins_connection_retries: 60
+jenkins_home: /var/lib/jenkins
+jenkins_hostname: localhost
+jenkins_http_port: 8080
+jenkins_jar_location: /opt/jenkins-cli.jar
+jenkins_url_prefix: ""
+jenkins_java_options: "-Djenkins.install.runSetupWizard=false"
+
+jenkins_plugins: 
+  - docker pipeline
+  - "docker pipeline"
+  - Docker Pipeline
+  - "Docker Pipeline"
+  - 'Docker Pipeline'
+  - credentials-binding 
+  - git
+  - Folders
+  - timestamper 
+  - pam authentication 
+  - workspace cleanup 
+  - github branch source 
+  - build timeout 
+  - ant
+  - ssh slaves 
+  - email extension 
+  - gradle
+  - Packer
+  - Ansible
+  - pipeline stage view
+  - pipeline
+  - pipeline gitHub library plugin
+  - 'pipeline: api'
+  - 'pipeline: scm step'
+  - 'pipeline: scm api'
+  - 'pipeline: declarative'
+  - 'pipeline: job'
+  - 'pipeline: basic steps'
+  - 'pipeline: build step'
+  - 'pipeline: gitHub groovy libraries'
+  - "pipeline: groovy"
+  - 'pipeline: input step'
+  - 'pipeline: job'
+  - "Pipeline: Multibranch"
+  - 'pipeline: nodes and processes'
+  - 'pipeline: REST API Plugin'
+  - 'pipeline: shared groovy libraries'
+  - 'pipeline: Stage Step'
+  - 'pipeline: Stage Tags Metadata'
+  - 'pipeline: Stage View Plugin'
+  - 'Docker Commons Plugin'
+  - 'Docker Pipeline'
+  
+  
+jenkins_plugins_state: present
+jenkins_plugin_updates_expiration: 86400
+jenkins_plugin_timeout: 30
+jenkins_plugins_install_dependencies: yes
+
+jenkins_admin_username: admin
+jenkins_admin_password: admin
+jenkins_admin_password_file: ""
+jenkins_admin_token: ""
+jenkins_admin_token_file: ""
+
+jenkins_process_user: jenkins
+jenkins_process_group: "{{ jenkins_process_user }}"
+
+jenkins_init_changes:
+  - option: "JENKINS_ARGS"
+    value: "--prefix={{ jenkins_url_prefix }}"
+  - option: "{{ jenkins_java_options_env_var }}"
+    value: "{{ jenkins_java_options }}"
